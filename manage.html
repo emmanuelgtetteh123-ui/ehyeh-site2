@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ehyeh - Content Manager</title>
+  <script>window.CMS_MANUAL_INIT = true;</script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</head>
+<body>
+<script>
+CMS.init({
+  config: {
+    load_config_file: false,
+    backend: { name: "git-gateway", branch: "main" },
+    media_folder: "images",
+    public_folder: "/images",
+    collections: [
+      {
+        name: "shop",
+        label: "Bags",
+        files: [
+          {
+            name: "products",
+            label: "All bags",
+            file: "products.json",
+            editor: { preview: false },
+            fields: [
+              {
+                label: "Bags", name: "items", label_singular: "Bag", widget: "list",
+                summary: "{{fields.name}} - GHc{{fields.price}}",
+                fields: [
+                  { label: "Name", name: "name", widget: "string" },
+                  { label: "Price (Ghana Cedi)", name: "price", widget: "number", value_type: "int", min: 0, step: 1 },
+                  { label: "Description", name: "description", widget: "text", required: false },
+                  { label: "Photo", name: "image", widget: "image" },
+                  { label: "Show in slideshow", name: "featured", widget: "boolean", default: false },
+                  { label: "Sold out", name: "sold_out", widget: "boolean", default: false }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: "settings",
+        label: "Settings",
+        files: [
+          {
+            name: "contact",
+            label: "Contact & links",
+            file: "settings.json",
+            editor: { preview: false },
+            fields: [
+              { label: "WhatsApp number (country code, no +)", name: "whatsapp", widget: "string", hint: "Example: 233530050246" },
+              { label: "Instagram link", name: "instagram", widget: "string", required: false },
+              { label: "TikTok link", name: "tiktok", widget: "string", required: false },
+              { label: "Facebook link", name: "facebook", widget: "string", required: false },
+              { label: "Story photo", name: "story_image", widget: "image", required: false }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+});
+</script>
+</body>
+</html>

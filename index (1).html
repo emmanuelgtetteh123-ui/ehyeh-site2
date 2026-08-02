@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ehyëh — Handmade Crochet Bags</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+  :root{
+    --navy:#182642;
+    --navy-deep:#101B31;
+    --gold:#C6A052;
+    --gold-soft:#DcC08A;
+    --cream:#F5EFE4;
+    --ivory:#FBF7EE;
+    --ink:#1E2740;
+    --muted:#6E6A5F;
+    --line:rgba(24,38,66,.14);
+    --gold-line:rgba(198,160,82,.5);
+    --display:'Cormorant Garamond',Georgia,serif;
+    --body:'Jost',system-ui,sans-serif;
+    --shadow:0 22px 50px -26px rgba(16,27,49,.55);
+    --shadow-sm:0 10px 26px -16px rgba(16,27,49,.5);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+  body{font-family:var(--body);background:var(--cream);color:var(--ink);line-height:1.65;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  :focus-visible{outline:2.5px solid var(--gold);outline-offset:3px;border-radius:2px}
+  .display{font-family:var(--display);font-weight:600;line-height:1.05;letter-spacing:.005em}
+  .wrap{width:min(1180px,92vw);margin-inline:auto}
+
+  .eyebrow{font-size:.72rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:.7rem}
+  .eyebrow::before{content:"";width:30px;height:1px;background:var(--gold)}
+
+  /* Butterfly mark */
+  .fly{display:inline-block;color:var(--gold)}
+  .fly svg{display:block}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--body);font-weight:500;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;padding:.95rem 1.7rem;border-radius:2px;border:1px solid transparent;cursor:pointer;transition:transform .18s ease,background .25s ease,color .25s ease,border-color .25s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn--gold{background:var(--gold);color:var(--navy-deep)}
+  .btn--gold:hover{background:var(--gold-soft)}
+  .btn--outline{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn--outline:hover{background:var(--ink);color:var(--cream)}
+  .btn--onnavy{background:transparent;color:var(--cream);border-color:var(--gold-line)}
+  .btn--onnavy:hover{background:var(--gold);color:var(--navy-deep);border-color:var(--gold)}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:70;background:rgba(24,38,66,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,82,.22)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:.6rem;color:var(--cream)}
+  .brand .name{font-family:var(--display);font-weight:600;font-size:1.75rem;color:var(--gold);letter-spacing:.02em;line-height:1}
+  .nav-links{display:flex;gap:2.2rem;list-style:none}
+  .nav-links a{color:var(--cream);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400;position:relative;padding:.3rem 0}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:1px;background:var(--gold);transition:width .25s ease}
+  .nav-links a:hover::after{width:100%}
+  .nav-right{display:flex;align-items:center;gap:1rem}
+  .cart-btn{position:relative;background:transparent;border:1px solid var(--gold-line);color:var(--cream);border-radius:2px;padding:.6rem .9rem;display:flex;align-items:center;gap:.5rem;cursor:pointer;font-family:var(--body);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;transition:.25s}
+  .cart-btn:hover{border-color:var(--gold);color:var(--gold)}
+  .cart-count{background:var(--gold);color:var(--navy-deep);font-size:.68rem;font-weight:600;min-width:19px;height:19px;border-radius:999px;display:grid;place-items:center;padding:0 5px}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:.4rem}
+  .menu-toggle span{display:block;width:24px;height:1.6px;background:var(--cream);margin:5px 0;transition:.25s}
+
+  /* Hero */
+  .hero{background:var(--navy);color:var(--cream);position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 85% 10%,rgba(198,160,82,.14),transparent 55%)}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center;padding:clamp(3rem,6vw,5.5rem) 0 clamp(3.5rem,6vw,6rem)}
+  .hero-copy .fly{margin-bottom:1.2rem}
+  .hero h1{font-size:clamp(3rem,7vw,5.4rem);color:var(--cream);margin:.4rem 0 .3rem}
+  .hero h1 em{font-style:italic;color:var(--gold)}
+  .hero .tagline{font-size:.82rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-soft);margin:1.1rem 0 1.6rem}
+  .hero .lead{font-weight:300;color:rgba(245,239,228,.82);max-width:42ch;font-size:1.05rem;margin-bottom:2rem}
+  .hero-cta{display:flex;gap:.9rem;flex-wrap:wrap}
+
+  /* Slideshow */
+  .slideshow{position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(198,160,82,.35)}
+  .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease;transform:scale(1.04)}
+  .slide.active{opacity:1;transform:scale(1);transition:opacity 1.1s ease,transform 6s ease}
+  .slide img{width:100%;height:100%;object-fit:cover}
+  .slide-cap{position:absolute;left:0;right:0;bottom:0;padding:2.4rem 1.5rem 1.3rem;background:linear-gradient(transparent,rgba(16,27,49,.72));color:var(--cream);font-family:var(--display);font-style:italic;font-size:1.3rem;letter-spacing:.01em}
+  .ss-nav{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:rgba(16,27,49,.42);border:1px solid rgba(255,255,255,.35);color:#fff;cursor:pointer;display:grid;place-items:center;transition:.25s;z-index:3;backdrop-filter:blur(3px)}
+  .ss-nav:hover{background:var(--gold);border-color:var(--gold);color:var(--navy-deep)}
+  .ss-prev{left:12px}.ss-next{right:12px}
+  .ss-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3}
+  .ss-dots button{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,.5);cursor:pointer;padding:0;transition:.25s}
+  .ss-dots button.active{background:var(--gold);width:22px;border-radius:4px}
+
+  /* Gold divider with butterfly */
+  .rule{display:flex;align-items:center;justify-content:center;gap:1.2rem;padding:2.6rem 0 .6rem}
+  .rule .ln{height:1px;width:min(180px,26vw);background:linear-gradient(90deg,transparent,var(--gold-line))}
+  .rule .ln.r{background:linear-gradient(90deg,var(--gold-line),transparent)}
+
+  /* Sections */
+  .section{padding:clamp(3.5rem,7vw,6rem) 0}
+  .section-head{text-align:center;max-width:60ch;margin-inline:auto}
+  .section-head h2{font-size:clamp(2.2rem,5vw,3.4rem);margin:.9rem 0 .7rem}
+  .section-head p{color:var(--muted);font-size:1.02rem}
+
+  /* Collection marquee (moving slides) */
+  .marquee{margin-top:2.8rem;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .marquee-track{display:flex;gap:1.2rem;width:max-content;animation:scroll 40s linear infinite}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  .mq-card{width:270px;flex:none;border-radius:4px;overflow:hidden;box-shadow:var(--shadow-sm);position:relative;background:var(--ivory)}
+  .mq-card img{width:100%;aspect-ratio:3/4;object-fit:cover}
+  .mq-card figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.6rem 1rem .9rem;background:linear-gradient(transparent,rgba(16,27,49,.7));color:var(--cream);font-family:var(--display);font-style:italic;font-size:1.15rem}
+  @media (prefers-reduced-motion:reduce){.marquee{overflow-x:auto}.marquee-track{animation:none}}
+
+  /* Shop */
+  .shop{background:var(--ivory)}
+  .products{margin-top:3rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem}
+  .product{background:var(--cream);border-radius:4px;overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease}
+  .product:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+  .product .pic{position:relative;overflow:hidden;aspect-ratio:3/4}
+  .product .pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .product:hover .pic img{transform:scale(1.05)}
+  .product .info{padding:1.1rem 1.15rem 1.3rem;display:flex;flex-direction:column;gap:.35rem;flex:1}
+  .product .info h3{font-family:var(--display);font-weight:600;font-size:1.32rem;line-height:1.1}
+  .product .info .desc{font-size:.82rem;color:var(--muted);flex:1;margin-bottom:.5rem}
+  .product .row{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+  .product .price{font-family:var(--display);font-size:1.25rem;font-weight:600;color:var(--navy)}
+  .product .add{background:var(--navy);color:var(--cream);border:none;cursor:pointer;font-family:var(--body);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;padding:.65rem .9rem;border-radius:2px;transition:.25s}
+  .product .add:hover{background:var(--gold);color:var(--navy-deep)}
+
+  /* Brand band (real logo) */
+  .brandband{background:var(--navy-deep);text-align:center;padding:clamp(3rem,6vw,5rem) 0}
+  .brandband img{width:min(460px,82vw);margin-inline:auto;border-radius:4px}
+  .brandband p{color:var(--gold-soft);letter-spacing:.4em;text-transform:uppercase;font-size:.72rem;margin-top:1.4rem}
+
+  /* Story */
+  .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+  .story-figure{border-radius:4px;overflow:hidden;box-shadow:var(--shadow);position:relative}
+  .story-figure img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .story-text h2{font-size:clamp(2.2rem,5vw,3.4rem);margin:.8rem 0 1.2rem}
+  .story-text p{color:var(--muted);margin-bottom:1.1rem;max-width:52ch}
+  .creed{display:flex;gap:0;margin:1.8rem 0 .5rem;border-top:1px solid var(--gold-line);border-bottom:1px solid var(--gold-line)}
+  .creed div{flex:1;text-align:center;padding:1.1rem .3rem}
+  .creed div+div{border-left:1px solid var(--line)}
+  .creed .w{font-family:var(--display);font-style:italic;font-size:1.5rem;color:var(--navy)}
+  .creed .s{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:.2rem}
+
+  /* Contact */
+  .contact{background:var(--navy);color:var(--cream);text-align:center}
+  .contact .eyebrow{justify-content:center}
+  .contact h2{font-size:clamp(2.2rem,5vw,3.4rem);color:var(--cream);margin:.9rem 0 .7rem}
+  .contact p{color:rgba(245,239,228,.78);max-width:48ch;margin:0 auto 2rem}
+  .wa-btn{display:inline-flex;align-items:center;gap:.7rem;background:#25D366;color:#0a2e17;font-family:var(--body);font-weight:500;font-size:.86rem;letter-spacing:.08em;text-transform:uppercase;padding:1rem 1.9rem;border-radius:2px;transition:transform .18s ease,filter .2s ease}
+  .wa-btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+  .socials{display:flex;gap:.8rem;justify-content:center;margin-top:2rem}
+  .socials a{width:42px;height:42px;border-radius:50%;border:1px solid var(--gold-line);display:grid;place-items:center;color:var(--cream);transition:.25s}
+  .socials a:hover{background:var(--gold);border-color:var(--gold);color:var(--navy-deep)}
+
+  footer{background:var(--navy-deep);color:rgba(245,239,228,.55);text-align:center;padding:2.2rem 0;font-size:.8rem;letter-spacing:.04em}
+  footer .name{font-family:var(--display);color:var(--gold);font-size:1.5rem;font-weight:600}
+
+  /* Floating WhatsApp */
+  .wa-float{position:fixed;bottom:22px;right:22px;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.4);z-index:80;transition:transform .2s ease}
+  .wa-float:hover{transform:scale(1.08)}
+
+  /* Cart drawer */
+  .overlay{position:fixed;inset:0;background:rgba(16,27,49,.5);opacity:0;visibility:hidden;transition:.25s;z-index:90}
+  .overlay.open{opacity:1;visibility:visible}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(410px,92vw);background:var(--cream);z-index:100;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-24px 0 60px -24px rgba(16,27,49,.55)}
+  .drawer.open{transform:translateX(0)}
+  .drawer-head{display:flex;align-items:center;justify-content:space-between;padding:1.4rem 1.5rem;border-bottom:1px solid var(--line)}
+  .drawer-head h3{font-family:var(--display);font-size:1.6rem;font-weight:600}
+  .drawer-close{background:none;border:none;cursor:pointer;font-size:1.6rem;line-height:1;color:var(--ink)}
+  .drawer-body{flex:1;overflow-y:auto;padding:1.1rem 1.5rem}
+  .cart-empty{text-align:center;color:var(--muted);margin-top:3rem;font-family:var(--display);font-style:italic;font-size:1.25rem}
+  .cart-item{display:flex;gap:.9rem;padding:.95rem 0;border-bottom:1px solid var(--line)}
+  .cart-item img{width:60px;height:74px;object-fit:cover;border-radius:3px;flex:none}
+  .ci-info{flex:1}
+  .ci-info h4{font-family:var(--display);font-size:1.1rem;font-weight:600}
+  .ci-info .price{font-size:.82rem;color:var(--muted)}
+  .qty{display:inline-flex;align-items:center;gap:.5rem;margin-top:.45rem}
+  .qty button{width:24px;height:24px;border-radius:3px;border:1px solid var(--line);background:var(--ivory);cursor:pointer;color:var(--ink);font-size:.9rem}
+  .qty span{min-width:18px;text-align:center;font-weight:400}
+  .remove{background:none;border:none;color:#a23b4b;cursor:pointer;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin-top:.35rem}
+  .drawer-foot{padding:1.3rem 1.5rem;border-top:1px solid var(--line)}
+  .subtotal{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1rem}
+  .subtotal .lbl{letter-spacing:.14em;text-transform:uppercase;font-size:.76rem;color:var(--muted)}
+  .subtotal .val{font-family:var(--display);font-size:1.6rem;font-weight:600}
+  .checkout{width:100%;justify-content:center;background:#25D366;color:#0a2e17;border:none;cursor:pointer;font-family:var(--body);font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:.8rem;padding:1rem;border-radius:2px;display:flex;align-items:center;gap:.6rem;transition:filter .2s ease}
+  .checkout:hover{filter:brightness(1.06)}
+  .checkout-note{font-size:.74rem;color:var(--muted);text-align:center;margin-top:.7rem}
+
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:var(--cream);padding:.85rem 1.5rem;border-radius:2px;font-size:.82rem;letter-spacing:.06em;opacity:0;visibility:hidden;transition:.3s;z-index:120;box-shadow:var(--shadow)}
+  .toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+
+  @media (max-width:920px){
+    .hero-grid{grid-template-columns:1fr}
+    .slideshow{max-width:420px;margin-inline:auto;order:-1}
+    .products{grid-template-columns:repeat(2,1fr)}
+    .story-grid{grid-template-columns:1fr}
+    .story-figure{max-width:420px}
+  }
+  @media (max-width:600px){
+    .nav-links{display:none;position:absolute;top:74px;left:0;right:0;background:var(--navy);flex-direction:column;padding:1.3rem 6vw;gap:1.3rem;border-bottom:1px solid rgba(198,160,82,.22)}
+    .nav-links.open{display:flex}
+    .menu-toggle{display:block}
+    .cart-btn .label{display:none}
+    .products{grid-template-columns:1fr 1fr;gap:1rem}
+    .product .info h3{font-size:1.15rem}
+    .creed .w{font-size:1.2rem}
+  }
+.soldout{position:absolute;top:12px;left:12px;background:var(--navy);color:var(--cream);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;padding:.35rem .6rem;border-radius:2px}
+</style>
+</head>
+<body id="top">
+
+<!-- reusable butterfly symbol -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="butterfly" viewBox="0 0 64 64">
+    <g fill="currentColor">
+      <path d="M32 32 C34 18 44 10 52 14 C60 18 56 31 44 32 C40 32.4 36 32.4 32 32 Z"/>
+      <path d="M32 33 C36 33 45 36 49 45 C51 51 45 53 41 49 C36 44 33 39 32 33 Z"/>
+      <path d="M32 32 C30 18 20 10 12 14 C4 18 8 31 20 32 C24 32.4 28 32.4 32 32 Z"/>
+      <path d="M32 33 C28 33 19 36 15 45 C13 51 19 53 23 49 C28 44 31 39 32 33 Z"/>
+      <ellipse cx="32" cy="32" rx="1.7" ry="15"/>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+      <path d="M32 18 C30 12 27 10 25 9"/>
+      <path d="M32 18 C34 12 37 10 39 9"/>
+    </g>
+  </symbol>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Ehyëh home">
+      <span class="fly"><svg width="30" height="30"><use href="#butterfly"/></svg></span>
+      <span class="name">Ehyëh</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#collection">Collection</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="cart-btn" id="openCart" aria-label="Open bag">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="label">Bag</span><span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="fly"><svg width="46" height="46"><use href="#butterfly"/></svg></span>
+      <h1 class="display">Carried by <em>hand</em>, worn with meaning.</h1>
+      <p class="tagline">I am · Belong · Become</p>
+      <p class="lead">Ehyëh is a collection of hand-crocheted bags — each one made stitch by stitch, in rich colour and quiet luxury. No two are ever quite the same.</p>
+      <div class="hero-cta">
+        <a href="#shop" class="btn btn--gold">Shop the collection</a>
+        <a href="#story" class="btn btn--onnavy">Our story</a>
+      </div>
+    </div>
+    <div class="slideshow" id="slideshow" aria-label="Featured bags" aria-roledescription="carousel">
+      <button class="ss-nav ss-prev" id="ssPrev" aria-label="Previous">&#8249;</button>
+      <button class="ss-nav ss-next" id="ssNext" aria-label="Next">&#8250;</button>
+      <div class="ss-dots" id="ssDots"></div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"><span class="ln"></span><span class="fly"><svg width="26" height="26"><use href="#butterfly"/></svg></span><span class="ln r"></span></div>
+
+<!-- COLLECTION marquee -->
+<section class="section" id="collection">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The Collection</span>
+      <h2 class="display">Made slowly, in small batches</h2>
+      <p>A moving look at the pieces — from playful top-handles to evening clutches. Hover to pause.</p>
+    </div>
+  </div>
+  <div class="marquee"><div class="marquee-track" id="marquee"></div></div>
+</section>
+
+<!-- SHOP -->
+<section class="section shop" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Shop</span>
+      <h2 class="display">Find your piece</h2>
+      <p>Prices in Ghana Cedi. Add favourites to your bag, then check out on WhatsApp — she'll confirm colours and delivery with you directly.</p>
+    </div>
+    <div class="products" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- BRAND BAND (real logo) -->
+<section class="brandband">
+  <img id="logoImg" alt="Ehyëh logo" />
+  <p>Handmade with intention</p>
+</section>
+
+<!-- STORY -->
+<section class="section" id="story">
+  <div class="wrap story-grid">
+    <figure class="story-figure"><img id="storyImg" alt="A handmade Ehyëh bag" /></figure>
+    <div class="story-text">
+      <span class="eyebrow">Our Story</span>
+      <h2 class="display">The meaning behind Ehyëh</h2>
+      <p>Ehyëh means <em>“I am”</em> — a reminder that we are always becoming. Every bag is crocheted by hand, one loop at a time, as a small practice in patience and care.</p>
+      <p>Because each piece is made by hand, no two are identical. The little differences aren't flaws — they're the signature of something made by a person, for a person.</p>
+      <div class="creed">
+        <div><div class="w">I am</div><div class="s">Rooted</div></div>
+        <div><div class="w">Belong</div><div class="s">Together</div></div>
+        <div><div class="w">Become</div><div class="s">Always</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <span class="eyebrow">Get in touch</span>
+    <h2 class="display">Order or request a custom piece</h2>
+    <p>Message on WhatsApp to place an order, choose your colours, or dream up something made just for you.</p>
+    <a class="wa-btn" id="waMain" href="#" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6s.6-1.8.9-2.1c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+      Chat on WhatsApp
+    </a>
+    <div class="socials">
+      <a href="#" data-social="instagram" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" data-social="tiktok" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.4 2.5 2 4.2 4.5 4.5v3c-1.7 0-3.2-.5-4.5-1.4V15a6 6 0 1 1-6-6v3a3 3 0 1 0 3 3V3h3Z"/></svg></a>
+      <a href="#" data-social="facebook" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3 1.3-3 3.3V11H9v3h2v7h3v-7h2.3l.7-3H14V9.5c0-.3.2-.5.6-.5H14Z"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="name">Ehyëh</div>
+    <p>I am · Belong · Become &nbsp;—&nbsp; Handmade crochet bags &nbsp;·&nbsp; © 2026 Ehyëh</p>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6s.6-1.8.9-2.1c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+</a>
+
+<!-- Cart drawer -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Shopping bag" aria-hidden="true">
+  <div class="drawer-head"><h3 class="display">Your bag</h3><button class="drawer-close" id="closeCart" aria-label="Close">&times;</button></div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot">
+    <div class="subtotal"><span class="lbl">Subtotal</span><span class="val" id="subtotal">GH₵0</span></div>
+    <button class="checkout" id="checkoutBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Z"/></svg>
+      Checkout on WhatsApp
+    </button>
+    <p class="checkout-note">Your order opens a pre-filled WhatsApp message to Ehyëh.</p>
+  </div>
+</aside>
+
+<div class="toast" id="toast">Added to your bag</div>
+
+<script>
+// Netlify Identity: on invite/login, send the user to the admin page
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) window.netlifyIdentity.on("login", () => { document.location.href = "/manage.html"; });
+  });
+}
+
+const $ = s => document.querySelector(s);
+const money = n => "GH\u20b5" + Number(n || 0).toLocaleString();
+let WA = "233530050246";
+let products = [], settings = {};
+
+Promise.all([
+  fetch("settings.json").then(r => r.json()).catch(() => ({})),
+  fetch("products.json").then(r => r.json()).catch(() => ({ items: [] }))
+]).then(([s, p]) => {
+  settings = s || {};
+  const list = Array.isArray(p) ? p : (p.items || []);
+  products = list.map((x, i) => ({ id: i + 1, ...x }));
+  if (settings.whatsapp) WA = String(settings.whatsapp).replace(/[^0-9]/g, "");
+  init();
+});
+
+function init() {
+  $("#logoImg").src = "logo.jpg";
+  $("#storyImg").src = settings.story_image || (products[0] && products[0].image) || "logo.jpg";
+  buildSlideshow();
+  buildMarquee();
+  buildShop();
+  applyLinks();
+  render();
+}
+
+/* Slideshow */
+let cur = 0, slideEls = [], dotEls = [], timer;
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function buildSlideshow() {
+  const ss = $("#slideshow"), dots = $("#ssDots");
+  let feat = products.filter(p => p.featured);
+  if (feat.length < 2) feat = products.slice(0, 5);
+  feat.forEach((p, i) => {
+    const d = document.createElement("div");
+    d.className = "slide" + (i === 0 ? " active" : "");
+    d.innerHTML = `<img src="${p.image}" alt="${p.name}"><div class="slide-cap">${p.name}</div>`;
+    ss.insertBefore(d, ss.querySelector(".ss-prev"));
+    slideEls.push(d);
+    const b = document.createElement("button");
+    b.setAttribute("aria-label", "Go to slide " + (i + 1));
+    if (i === 0) b.classList.add("active");
+    b.addEventListener("click", () => go(i, true));
+    dots.appendChild(b); dotEls.push(b);
+  });
+  $("#ssPrev").addEventListener("click", () => go(cur - 1, true));
+  $("#ssNext").addEventListener("click", () => go(cur + 1, true));
+  ss.addEventListener("mouseenter", () => clearInterval(timer));
+  ss.addEventListener("mouseleave", restart);
+  restart();
+}
+function go(i, manual) {
+  if (!slideEls.length) return;
+  slideEls[cur].classList.remove("active"); dotEls[cur].classList.remove("active");
+  cur = (i + slideEls.length) % slideEls.length;
+  slideEls[cur].classList.add("active"); dotEls[cur].classList.add("active");
+  if (manual) restart();
+}
+function restart() { clearInterval(timer); if (!reduce && slideEls.length > 1) timer = setInterval(() => go(cur + 1), 4500); }
+
+/* Marquee */
+function buildMarquee() {
+  const items = products.concat(products);
+  $("#marquee").innerHTML = items.map(p => `<figure class="mq-card"><img src="${p.image}" alt="${p.name}"><figcaption>${p.name}</figcaption></figure>`).join("");
+}
+
+/* Shop */
+function buildShop() {
+  $("#productGrid").innerHTML = products.map(p => `
+    <article class="product">
+      <div class="pic"><img src="${p.image}" alt="${p.name}">${p.sold_out ? '<span class="soldout">Sold out</span>' : ''}</div>
+      <div class="info">
+        <h3>${p.name}</h3>
+        <p class="desc">${p.description || ''}</p>
+        <div class="row"><span class="price">${money(p.price)}</span>
+        ${p.sold_out ? '<button class="add" disabled style="opacity:.5;cursor:not-allowed">Sold out</button>' : `<button class="add" data-id="${p.id}">Add to bag</button>`}</div>
+      </div>
+    </article>`).join("");
+  $("#productGrid").addEventListener("click", e => { const b = e.target.closest(".add"); if (b && !b.disabled) add(+b.dataset.id); });
+}
+
+/* Cart */
+const cart = {};
+const overlay = $("#overlay"), drawer = $("#drawer"), drawerBody = $("#drawerBody"), toast = $("#toast");
+let toastT;
+const openD = () => { overlay.classList.add("open"); drawer.classList.add("open"); drawer.setAttribute("aria-hidden", "false"); };
+const closeD = () => { overlay.classList.remove("open"); drawer.classList.remove("open"); drawer.setAttribute("aria-hidden", "true"); };
+$("#openCart").addEventListener("click", openD);
+$("#closeCart").addEventListener("click", closeD);
+overlay.addEventListener("click", closeD);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeD(); });
+function showToast(m) { toast.textContent = m; toast.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => toast.classList.remove("show"), 1800); }
+function add(id) { cart[id] = (cart[id] || 0) + 1; render(); showToast("Added to your bag"); }
+function chg(id, d) { cart[id] += d; if (cart[id] <= 0) delete cart[id]; render(); }
+function rmv(id) { delete cart[id]; render(); }
+function render() {
+  const ids = Object.keys(cart);
+  $("#cartCount").textContent = ids.reduce((s, id) => s + cart[id], 0);
+  if (!ids.length) { drawerBody.innerHTML = `<div class="cart-empty">Your bag is empty \u2014 go find something lovely.</div>`; }
+  else {
+    drawerBody.innerHTML = ids.map(id => { const p = products.find(x => x.id == id); return `
+      <div class="cart-item"><img src="${p.image}" alt="${p.name}">
+        <div class="ci-info"><h4>${p.name}</h4><div class="price">${money(p.price)}</div>
+          <div class="qty"><button data-a="dec" data-id="${id}" aria-label="Decrease">\u2212</button><span>${cart[id]}</span><button data-a="inc" data-id="${id}" aria-label="Increase">+</button></div>
+          <button class="remove" data-a="rm" data-id="${id}">Remove</button>
+        </div></div>`; }).join("");
+  }
+  const total = ids.reduce((s, id) => { const p = products.find(x => x.id == id); return s + Number(p.price || 0) * cart[id]; }, 0);
+  $("#subtotal").textContent = money(total);
+}
+drawerBody.addEventListener("click", e => { const b = e.target.closest("[data-a]"); if (!b) return; const id = +b.dataset.id;
+  if (b.dataset.a === "inc") chg(id, 1); if (b.dataset.a === "dec") chg(id, -1); if (b.dataset.a === "rm") rmv(id); });
+
+/* WhatsApp + social links */
+function waLink(t) { return `https://wa.me/${WA}?text=${encodeURIComponent(t)}`; }
+function applyLinks() {
+  const hi = "Hello Ehyeh! I'd love to know more about your bags.";
+  $("#waMain").href = waLink(hi); $("#waFloat").href = waLink(hi);
+  const map = { instagram: settings.instagram, tiktok: settings.tiktok, facebook: settings.facebook };
+  document.querySelectorAll("[data-social]").forEach(a => {
+    const url = map[a.dataset.social];
+    if (url) a.href = url; else a.style.display = "none";
+  });
+}
+$("#checkoutBtn").addEventListener("click", () => {
+  const ids = Object.keys(cart);
+  if (!ids.length) { showToast("Add something first"); return; }
+  let msg = "Hello Ehyeh! I'd like to order:\n", total = 0;
+  ids.forEach(id => { const p = products.find(x => x.id == id); total += Number(p.price || 0) * cart[id]; msg += `\u2022 ${cart[id]} \u00d7 ${p.name} \u2014 ${money(p.price)}\n`; });
+  msg += `\nTotal: ${money(total)}`;
+  window.open(waLink(msg), "_blank");
+});
+
+/* Mobile nav */
+const navLinks = $("#navLinks");
+$("#menuToggle").addEventListener("click", () => navLinks.classList.toggle("open"));
+navLinks.addEventListener("click", e => { if (e.target.tagName === "A") navLinks.classList.remove("open"); });
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{
+  "items": [
+    {
+      "name": "Cherry Top-Handle",
+      "price": 280,
+      "description": "Ruby t-shirt yarn with a playful cherry charm.",
+      "image": "/cherry.jpg",
+      "featured": true,
+      "sold_out": false
+    },
+    {
+      "name": "Pearl Shell Bag",
+      "price": 350,
+      "description": "Scalloped shell shape dotted with pearls.",
+      "image": "/shell.jpg",
+      "featured": true,
+      "sold_out": false
+    },
+    {
+      "name": "Latte Braided Bag",
+      "price": 360,
+      "description": "Chunky braid in latte & cream, with a gold clasp.",
+      "image": "/braided.jpg",
+      "featured": true,
+      "sold_out": false
+    },
+    {
+      "name": "Ivory Bamboo Bag",
+      "price": 300,
+      "description": "Soft ivory knit on a warm bamboo ring handle.",
+      "image": "/bamboo.jpg",
+      "featured": true,
+      "sold_out": false
+    },
+    {
+      "name": "Wine Waffle Hobo",
+      "price": 260,
+      "description": "Deep wine waffle stitch, slouchy and roomy.",
+      "image": "/waffle.jpg",
+      "featured": true,
+      "sold_out": false
+    },
+    {
+      "name": "Bluebell Mini",
+      "price": 220,
+      "description": "Dusty-blue mini with a crochet flower charm.",
+      "image": "/blue.jpg",
+      "featured": false,
+      "sold_out": false
+    },
+    {
+      "name": "Wine Cloud Clutch",
+      "price": 240,
+      "description": "Pillowy burgundy clutch for evenings out.",
+      "image": "/clutch.jpg",
+      "featured": false,
+      "sold_out": false
+    }
+  ]
+}
